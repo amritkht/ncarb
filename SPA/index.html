@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="stylesheet.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<link rel="stylesheet" type="text/css"
+href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+<body>
+<div ng-app="ncarbApp" ng-controller="ncarbCtrl">
+	<br>
+	<br>
+	
+	<p>Filtering input:
+	<input type="text" ng-model="filterValue"></p>
+	<inp>
+	<table>
+		<thead>
+		  <tr>
+			<th></th>
+		     <th>FirstName</th>
+		     <th>LastName</th>
+				<th>City</th>
+		     <th>StateCode</th>
+				<th>CountryCode</th>
+		  </tr>
+		 </thead>
+	  <tr ng-repeat="x in values | filter:filterValue">
+			<td>{{ $index + 1 }}</td>
+	    <td>{{ x.firstName }}</td>
+	    <td>{{ x.lastName }}</td>
+		   <td>{{ x.city }}</td>
+			 <td>{{ x.stateCode }}</td>
+				<td>{{ x.countryCode }}</td>
+	  </tr>
+	</table>
+
+
+
+<br><br>
+<script type="text/javascript">
+     describe('Has at least one Cert holder in Washington DC', function () {
+			var compile, scope, directiveElem;
+
+			beforeEach(function(){
+				module('ncarbApp');
+				
+				inject(function($compile, $rootScope){
+				    compile = $compile;
+				    scope = $rootScope.$new();
+				  });
+				var element = angular.element('<table>');
+				var compiledElement = compile(element)(scope);
+			  scope.$digest();
+				directiveElem = compiledElement;
+			});
+			    it('Should have Washington DC',function() {
+						var rows = directiveElem.find('tr')
+					    expect(rows.length).toBe(22);
+					});
+			});
+</script>
+
+</div>
+
+<script src="ncarbData.js"></script>
+</body>
