@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css"
+ href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+</head>
+<body>
+</body>
+
+<script src='spc/ncarbData.js'></script>
+<script type="text/javascript">
+
+     describe('Has at least one Cert holder in Washington DC', function () {
+				var $rootScope, $scope, $controller, $http;
+
+				beforeEach(module('ncarbApp'));
+				beforeEach(inject(function(_$scope_, _$http_, _$controller_){
+					$scope = _$scoope_;
+					$http = _$http_;
+					$controller = _$controller_;
+
+					$controller('ncarbApp', {'scope': $scope, '$http': $http});
+				}));
+				it('Should have Washington DC',function() {
+					expect($scope.values).toContain(city: 'Washington DC')
+				});
+				
+			});
+
+
+</script>
+
+
+</html>
